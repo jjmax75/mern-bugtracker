@@ -1,0 +1,29 @@
+{
+  "name": "hashnode-mern",
+  "version": "1.0.0",
+  "description": "Building a MERN bug tracking app",
+  "main": "webapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjmax75/mern-bugtracker.git"
+  },
+  "keywords": [
+    "MERN",
+    "Node",
+    "React",
+    "Express",
+    "Mongo"
+  ],
+  "author": "Sean Behan <behanj@gmail.com> (http://boxitoff.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jjmax75/mern-bugtracker/issues"
+  },
+  "homepage": "https://github.com/jjmax75/mern-bugtracker#readme",
+  "dependencies": {
+    "express": "4.13.4"
+  }
+}
