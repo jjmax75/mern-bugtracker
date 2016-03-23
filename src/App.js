@@ -1,13 +1,13 @@
-var bugs = [
+var bugsData = [
   {
-    id: "23401",
+    id: "1",
     status: "pending",
     priority: "manyana",
     owner: "Sean",
     title: "testy bug 1"
   },
   {
-    id: "23696",
+    id: "2",
     status: "pending",
     priority: "manyana",
     owner: "Sean",
@@ -28,9 +28,24 @@ var BugFilter = React.createClass({
 var BugAdd = React.createClass({
   render: function() {
     return (
-      <div className="bugAdd">
-        A form to add new bugs
-      </div>
+      <form className="bugAdd">
+        <p>
+          <label htmlFor="status">Status</label>
+          <input type="text" id="status" />
+        </p>
+        <p>
+          <label htmlFor="priority">Priority</label>
+          <input type="text" id="priority" />
+        </p>
+        <p>
+          <label htmlFor="owner">Owner</label>
+          <input type="text" id="owner" />
+        </p>
+        <p>
+          <label htmlFor="title">Title</label>
+          <input type="text" id="title" />
+        </p>
+      </form>
     );
   }
 });
@@ -68,29 +83,47 @@ var BugTable = React.createClass({
             <th>title</th>
           </tr>
         </thead>
-
-        {bugRows}
+        <tbody>
+          {bugRows}
+        </tbody>
       </table>
     );
   }
 });
 
 var BugList = React.createClass({
+  getInitialState: function() {
+    return {bugs: bugsData};
+  },
+
+  handleClick: function() {
+    let addedBugData = {id: "3", status: "pending", priority: "manyana", owner: "Sean", title: "testy bug 3"};
+    this.addBug(addedBugData);
+  },
+
+  addBug: function(bug) {
+    let bugs = this.state.bugs.slice(); // make a copy of the bugs, don't modify state
+    bugs.push(bug);
+    this.setState({bugs: bugs});
+  },
+
   render: function() {
     return (
       <div className="bugList">
         <h2>Bug Tracker</h2>
         <BugFilter />
         <hr />
-        <BugTable bugs={this.props.bugs} />
+        <BugTable bugs={this.state.bugs} />
         <hr />
         <BugAdd />
+        <hr />
+        <button onClick={this.handleClick}>Add a Bug</button>
       </div>
     );
   }
 });
 
 ReactDOM.render(
-  <BugList bugs={bugs} />,
+  <BugList bugs={bugsData} />,
   document.getElementById('main')
 );
