@@ -23,15 +23,21 @@ mongo.connect(mongoURL, function(err, db) {
 
   app.get('/api/bugs', function(req, res) {
     db.collection('bugs').find().toArray(function(err, docs){
+      if (err) console.error(err);
       res.json(docs);
     });
   });
 
   app.post('/api/bugs/', function(req, res) {
     var bug = req.body;
-    var id = bugsData.length + 1;
-    bug.id = id;
-    res.json(req.body);
+    db.collection('bugs').insertOne(bug, function(err, result){
+      if (err) console.error(err);
+      var id = result.insertedId;
+      db.collection('bugs').find({_id: id}).limit(1).next(function(err, doc) {
+        if (err) console.error(err);
+        res.json(doc);
+      });
+    });
   });
 
   app.listen(3000, function() {

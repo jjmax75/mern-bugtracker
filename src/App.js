@@ -88,7 +88,7 @@ var BugTable = React.createClass({
   render: function() {
     var bugRows = this.props.bugs.map(function(bug) {
       return (
-        <BugRow key={bug.id} bug={bug} />
+        <BugRow key={bug._id} bug={bug} />
       );
     });
 
