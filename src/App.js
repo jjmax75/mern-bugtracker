@@ -1,20 +1,3 @@
-var bugsData = [
-  {
-    id: "1",
-    status: "pending",
-    priority: "manyana",
-    owner: "Sean",
-    title: "testy bug 1"
-  },
-  {
-    id: "2",
-    status: "pending",
-    priority: "manyana",
-    owner: "Sean",
-    title: "testy bug 2"
-  }
-];
-
 var BugFilter = React.createClass({
   render: function() {
     return (
@@ -91,7 +74,7 @@ var BugRow = React.createClass({
   render: function() {
     return (
       <tr>
-        <td>{this.props.bug.id}</td>
+        <td>{this.props.bug._id}</td>
         <td>{this.props.bug.status}</td>
         <td>{this.props.bug.priority}</td>
         <td>{this.props.bug.owner}</td>
@@ -130,14 +113,37 @@ var BugTable = React.createClass({
 
 var BugList = React.createClass({
   getInitialState: function() {
-    return {bugs: bugsData};
+    return {bugs: []};
+  },
+
+  componentDidMount: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      success: function(data) {
+        this.setState({bugs: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
 
   addBug: function(bug) {
-    var bugs = this.state.bugs.slice(); // make a copy of the bugs, don't modify state
-    bug.id = this.state.bugs.length + 1;
-    bugs.push(bug);
-    this.setState({bugs: bugs});
+    $.ajax({
+      url: '/api/bugs/',
+      contentType: 'application/json',
+      dataType: 'json',
+      type: 'POST',
+      data: JSON.stringify(bug),
+      success: function(data) {
+        var bugsModified = this.state.bugs.concat(data);
+        this.setState({bugs: bugsModified});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error('/api/bugs/', status, err.toString());
+      }.bind(this)
+    });
   },
 
   render: function() {
@@ -155,6 +161,6 @@ var BugList = React.createClass({
 });
 
 ReactDOM.render(
-  <BugList bugs={bugsData} />,
+  <BugList url='/api/bugs' />,
   document.getElementById('main')
 );

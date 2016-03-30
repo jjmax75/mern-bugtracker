@@ -27,6 +27,8 @@
   "homepage": "https://github.com/jjmax75/mern-bugtracker#readme",
   "dependencies": {
     "babel-preset-react": "6.5.0",
-    "express": "4.13.4"
+    "body-parser": "1.15.0",
+    "express": "4.13.4",
+    "mongodb": "2.1.13"
   }
 }
