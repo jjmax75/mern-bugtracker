@@ -5,8 +5,7 @@
   "main": "webapp.js",
   "scripts": {
     "start": "node webapp.js",
-    "dev": "nodemon webapp.js",
-    "debug": "nodemon --debug webapp.js"
+    "debug": "node --debug webapp.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +37,7 @@
     "babelify": "7.2.0",
     "browserify": "13.0.0",
     "gulp": "3.9.1",
-    "vinyl-source-stream": "1.1.0"
+    "vinyl-source-stream": "1.1.0",
+    "watchify": "3.7.0"
   }
 }
