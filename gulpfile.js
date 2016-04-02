@@ -16,14 +16,14 @@ function scripts(watch) {
 
   bundler.on('log', function(msg) {console.log('Updated: ' + msg)});
 
-  bundler.on('error', function(err) {
-    console.error(err);
-    this.emit('end');
-  });
-
   function makeBundle() {
     bundler.transform('babelify', {presets: ['react']})
       .bundle()
+      .on('error', function(err) {
+        console.error(err.message);
+        console.error(err.stack);
+        this.emit('end');
+      })
       .pipe(source('bundle.js'))
       .pipe(gulp.dest('./static/'));
   };
