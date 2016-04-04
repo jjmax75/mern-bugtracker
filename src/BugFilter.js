@@ -1,10 +1,14 @@
 var React = require('react');
 
 var BugFilter = React.createClass({
+  handleClick: function() {
+    this.props.handleSubmit({status: 'open'});
+  },
+
   render: function() {
     return (
       <div className="bugFilter">
-        Section for the filter component
+        <button onClick={this.handleClick}>Filter</button>
       </div>
     );
   }

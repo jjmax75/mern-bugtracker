@@ -5,7 +5,8 @@
   "main": "webapp.js",
   "scripts": {
     "start": "node webapp.js",
-    "debug": "node --debug webapp.js"
+    "debug": "node --debug webapp.js",
+    "dev": "nodemon webapp.js"
   },
   "repository": {
     "type": "git",
