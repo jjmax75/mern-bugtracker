@@ -17,10 +17,6 @@ mongo.connect(mongoURL, function(err, db) {
   app.use(express.static(__dirname + '/static'));
   app.use(bodyParser.json());
 
-  app.get('/', function(req, res) {
-    res.send('index.html');
-  });
-
   app.get('/api/bugs', function(req, res) {
     var filter = {};
     req.query.priority ? filter.priority = req.query.priority : '';

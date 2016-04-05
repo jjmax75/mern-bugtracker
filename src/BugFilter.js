@@ -3,7 +3,10 @@ var React = require('react');
 var BugFilter = React.createClass({
 
   getInitialState: function() {
-    return {priority: '', status: ''};
+    return {
+      priority: this.props.location.priority,
+      status: this.props.location.status
+    };
   },
 
   handlePriorityChange: function(event) {

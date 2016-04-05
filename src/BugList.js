@@ -16,7 +16,7 @@ var BugList = React.createClass({
 
   loadData: function(filter) {
     $.ajax({
-      url: this.props.url,
+      url: '/api/bugs/',
       data: filter,
       dataType: 'json',
       success: function(data) {
@@ -49,7 +49,7 @@ var BugList = React.createClass({
     return (
       <div className="bugList">
         <h2>Bug Tracker</h2>
-        <BugFilter handleSubmit={this.loadData} />
+        <BugFilter handleSubmit={this.loadData} location={this.props.location.query} />
         <hr />
         <BugTable bugs={this.state.bugs} />
         <hr />
