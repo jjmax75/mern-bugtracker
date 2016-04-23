@@ -9,6 +9,14 @@ var BugFilter = React.createClass({
     };
   },
 
+  componentWillReceiveProps: function(newProps) {
+    if (newProps.location.status === this.state.status && newProps.location.priority === this.state.priority) {
+      return;
+    } else {
+      this.setState({status: newProps.location.status, priority: newProps.location.priority});
+    }
+  },
+
   handlePriorityChange: function(event) {
     this.setState({priority: event.target.value});
   },
@@ -18,7 +26,11 @@ var BugFilter = React.createClass({
   },
 
   handleClick: function() {
-    this.props.handleSubmit({status: this.state.status, priority: this.state.priority});
+    // this.props.handleSubmit({status: this.state.status, priority: this.state.priority});
+    var filter = {};
+    if (this.state.priority) filter.priority = this.state.priority;
+    if (this.state.status) filter.status = this.state.status;
+    this.props.handleSubmit(filter);
   },
 
   render: function() {

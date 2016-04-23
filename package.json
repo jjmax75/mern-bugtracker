@@ -39,6 +39,8 @@
     "babelify": "7.2.0",
     "browserify": "13.0.0",
     "gulp": "3.9.1",
+    "gulp-sourcemaps": "2.0.0-alpha",
+    "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0",
     "watchify": "3.7.0"
   }
