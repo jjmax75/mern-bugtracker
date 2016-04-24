@@ -1,4 +1,9 @@
 var React = require('react');
+var Button = require('react-bootstrap').Button;
+var Panel = require('react-bootstrap').Panel;
+var FormControl = require('react-bootstrap').FormControl;
+var FormGroup = require('react-bootstrap').FormGroup;
+var ControlLabel = require('react-bootstrap').ControlLabel;
 
 var BugAdd = React.createClass({
 
@@ -40,23 +45,25 @@ var BugAdd = React.createClass({
   render: function() {
     return (
       <form className="bugAdd">
-        <p>
-          <label htmlFor="status">Status</label>
-          <input type="text" id="status" value={this.state.status} onChange={this.handleStatusChange} />
-        </p>
-        <p>
-          <label htmlFor="priority">Priority</label>
-          <input type="text" id="priority" value={this.state.priority} onChange={this.handlePriorityChange} />
-        </p>
-        <p>
-          <label htmlFor="owner">Owner</label>
-          <input type="text" id="owner" value={this.state.owner} onChange={this.handleOwnerChange} />
-        </p>
-        <p>
-          <label htmlFor="title">Title</label>
-          <input type="text" id="title" value={this.state.title} onChange={this.handleTitleChange} />
-        </p>
-        <p><button onClick={this.handleSubmit}>Add Bug</button></p>
+        <Panel>
+          <FormGroup>
+            <ControlLabel htmlFor="status">Status</ControlLabel>
+            <FormControl type="text" id="status" value={this.state.status} onChange={this.handleStatusChange}></FormControl>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel htmlFor="priority">Priority</ControlLabel>
+            <FormControl type="text" id="priority" value={this.state.priority} onChange={this.handlePriorityChange}></FormControl>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel htmlFor="owner">Owner</ControlLabel>
+            <FormControl type="text" id="owner" value={this.state.owner} onChange={this.handleOwnerChange}></FormControl>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel htmlFor="title">Title</ControlLabel>
+            <FormControl type="text" id="title" value={this.state.title} onChange={this.handleTitleChange}></FormControl>
+          </FormGroup>
+          <p><Button bsStyle="primary" onClick={this.handleSubmit}>Add Bug</Button></p>
+        </Panel>
       </form>
     );
   }

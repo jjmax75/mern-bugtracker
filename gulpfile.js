@@ -16,11 +16,12 @@ function scripts(watch) {
 
   bundler.on('update', makeBundle);
 
+  bundler.transform('babelify', {presets: ['react']});
+
   bundler.on('log', function(msg) {console.log('Updated: ' + msg)});
 
   function makeBundle() {
-    bundler.transform('babelify', {presets: ['react']})
-      .bundle()
+    bundler.bundle()
       .on('error', function(err) {
         console.error(err.message);
         console.error(err.stack);
@@ -28,7 +29,7 @@ function scripts(watch) {
       })
       .pipe(source('bundle.js'))
       .pipe(buffer())
-      .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(sourcemaps.init())
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./static/'));
   };

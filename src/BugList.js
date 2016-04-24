@@ -6,7 +6,7 @@ var BugTable = require('./BugTable.js');
 var BugAdd = require('./BugAdd.js');
 
 var BugList = React.createClass({
-  contextTypes: function() {
+  contextTypes: {
     router: React.PropTypes.object.isRequired
   },
 
